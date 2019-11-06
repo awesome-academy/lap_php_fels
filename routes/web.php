@@ -11,21 +11,24 @@
 |
 */
 
-Route::prefix('/home')->group(function () {
-    Route::get('/', 'HomeController@index')->name('homepage');
-});
+Route::group(['namespace' => 'User', 'middleware' => 'checkRole'], function () {
+    Route::prefix('/home')->group(function () {
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::get('/logout', 'HomeController@getLogout')->name('get.logout');
+    });
 
-Route::prefix('/profile')->group(function () {
-    Route::get('/{id}', 'ProfileController@index')->name('get.profile');
-    Route::get('/edit/{id}', 'ProfileController@getEditProfile')->name('get.edit.profile');
-    Route::post('/edit/{id}', 'ProfileController@postEditProfile')->name('post.edit.profile');
-});
+    Route::prefix('/profile')->group(function () {
+        Route::get('/{id}', 'ProfileController@index')->name('get.profile');
+        Route::get('/edit/{id}', 'ProfileController@getEditProfile')->name('get.edit.profile');
+        Route::post('/edit/{id}', 'ProfileController@postEditProfile')->name('post.edit.profile');
+    });
 
-Route::prefix('/course')->group(function () {
-    Route::get('/{slug}-{id}', 'CourseController@index')->name('get.course');
-    Route::get('/lessions/{id}-{slug}', 'LessionController@index')->name('get.all.lession');
-    Route::get('/lession/{id}-{slug}', 'LessionController@getLession')->name('get.detail.lession');
-    Route::post('/quiz/{lession_id}-{test_id}', 'LessionController@getAnswers')->name('answer.question');
+    Route::prefix('/course')->group(function () {
+        Route::get('/{slug}-{id}', 'CourseController@index')->name('get.course');
+        Route::get('/lessions/{id}-{slug}', 'LessionController@index')->name('get.all.lession');
+        Route::get('/lession/{id}-{slug}', 'LessionController@getLession')->name('get.detail.lession');
+        Route::post('/quiz/{lession_id}-{test_id}', 'LessionController@getAnswers')->name('answer.question');
+    });
 });
 
 Auth::routes();
