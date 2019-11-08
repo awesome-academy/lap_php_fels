@@ -29,9 +29,9 @@
     <link href="{{ asset('bower_components/bower-hai/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('bower_components/bower-hai/css/plugins.css') }}" rel="stylesheet">
     <link href="{{ asset('bower_components/bower-hai/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('bower_components/bower-hai/css/alt-colors.css') }}" rel="stylesheet">    
+    <link href="{{ asset('bower_components/bower-hai/css/alt-colors.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bower-hai/profile.css') }}">
-    
+
     @yield('title')
 
 </head>
@@ -43,18 +43,18 @@
             </div>
         </div>
         <!-- navigator -->
-        <div class="nav-wrapper smoothie">  
-            <div class="container">      
+        <div class="nav-wrapper smoothie">
+            <div class="container">
                 <div class="row">
                     <div class="col-xs-3">
-                        <a class="logo" href="{{ route('home') }}"><img alt="" class="logo img-responsive" src="{{ asset('bower_components/hai-bower/images/logo.png') }}"></a> 
+                        <a class="logo" href="{{ route('home') }}"><img alt="" class="logo img-responsive" src="{{ asset('bower_components/hai-bower/images/logo.png') }}"></a>
                     </div>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="col-xs-9">
                         <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">                        
+                            <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
                                     <a href="{{ route('home') }}" >{{ trans('layout.home') }}</a>
                                 </li>
@@ -79,26 +79,36 @@
                                         <li><a href="{{ route('get.profile', Auth::user()->id) }}"><i class="far fa-user-circle"></i>  {{ trans('layout.profile') }}</a></li>
                                         <li><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i>  {{ trans('layout.logout') }}</a></li></li>
                                     </ul>
-                                </li> 
+                                </li>
                             </ul>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <header id="home" class="backstretched single-page-hero">
+            <div class="dark-overlay single-page-hero">
+                <div class="container single-page-hero">
+                    <div class="vertical-center-js text-center">
+                        @yield('header')
+                    </div>
+                </div>
+            </div>
+        </header>
+
         @yield('content')
 
         <footer>
             <div class="container">
-                <div class="row">                
+                <div class="row">
                     <div class="col-md-6 footer-social">
                         <a class="facebook" href="#"><i class="fab fa-facebook"></i></a>
                         <a class="google" href="#"><i class="fab fa-google-plus"></i></a>
                         <a class="twitter" href="#"><i class="fab fa-twitter"></i></a>
                         <a class="pinterest" href="#"><i class="fab fa-pinterest"></i></a>
                         <a class="blog" href="#"><i class="fa fa-rss"></i></a>
-                        <a class="dribbble" href="#"><i class="fab fa-dribbble"></i></a>     
+                        <a class="dribbble" href="#"><i class="fab fa-dribbble"></i></a>
                     </div>
                     <div class="col-md-6 text-right">
                         <p class="copyright"><small>{{ trans('layout.copyright') }}<i class="far fa-heart"></i></small></p>
@@ -108,9 +118,9 @@
         </footer>
         <a href="#" id="back-to-top"><i class="fa fa-long-arrow-up"></i></a>
     </div>
-    <script src="{{ asset('bower_components/bower-hai/js/jquery.min.js') }}"></script> 
+    <script src="{{ asset('bower_components/bower-hai/js/jquery.min.js') }}"></script>
     <script src="{{ asset('bower_components/bower-hai/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('bower_components/bower-hai/js/plugins.js') }}"></script> 
+    <script src="{{ asset('bower_components/bower-hai/js/plugins.js') }}"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="{{ asset('bower_components/bower-hai/js/init.js') }}"></script>
 </body>

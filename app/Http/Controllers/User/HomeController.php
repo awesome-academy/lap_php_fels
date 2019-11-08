@@ -32,4 +32,11 @@ class HomeController extends Controller
             'activities' => $activities,
         ]);
     }
+
+    public function getLogout()
+    {
+        Auth::logout();
+
+        return redirect()->route('login');
+    }
 }
