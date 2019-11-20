@@ -12,7 +12,18 @@
          stopOnFailure="false">
     <testsuites>
         <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
+            <directory suffix="TestModelActivity.php">./tests/Unit/Models</directory>
+            <directory suffix="TestModelAnswer.php">./tests/Unit/Models</directory>
+            <directory suffix="TestModelCategory.php">./tests/Unit/Models</directory>
+            <directory suffix="TestModelCourse.php">./tests/Unit/Models</directory>
+            <directory suffix="TestModelLession.php">./tests/Unit/Models</directory>
+            <directory suffix="TestModelPermission.php">./tests/Unit/Models</directory>
+            <directory suffix="TestModelQuestion.php">./tests/Unit/Models</directory>
+            <directory suffix="TestModelRole.php">./tests/Unit/Models</directory>
+            <directory suffix="TestModelTest.php">./tests/Unit/Models</directory>
+            <directory suffix="TestModelUser.php">./tests/Unit/Models</directory>
+            <directory suffix="TestModelWord.php">./tests/Unit/Models</directory>
+            <directory suffix="TestAdminCategoryController.php">./tests/Unit/Controller</directory>
         </testsuite>
 
         <testsuite name="Feature">
