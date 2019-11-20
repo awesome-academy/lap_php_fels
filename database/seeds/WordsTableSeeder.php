@@ -17,7 +17,7 @@ class WordsTableSeeder extends Seeder
 
         for ($i = 0; $i < $limit; $i++) {
             DB::table('words')->insert([
-                'lession_id' => rand(1, 50),
+                'lession_id' => rand(64, 76),
                 'key_word' => $faker->word,
                 'sentence' => $faker->sentence($nbWords = 6, $variableNbWords = true),
                 'created_at' => $faker->dateTime($max = 'now', $timezone = null),

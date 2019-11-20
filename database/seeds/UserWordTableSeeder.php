@@ -17,8 +17,8 @@ class UserWordTableSeeder extends Seeder
 
         for ($i = 0; $i < $limit; $i++) {
             DB::table('user_word')->insert([
-                'user_id' => rand(1, 50),
-                'word_id' => rand(1, 50),
+                'user_id' => 69,
+                'word_id' => rand(281, 360),
                 'created_at' => $faker->dateTime($max = 'now', $timezone = null),
                 'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
             ]);

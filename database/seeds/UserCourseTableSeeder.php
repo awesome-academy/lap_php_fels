@@ -17,8 +17,8 @@ class UserCourseTableSeeder extends Seeder
 
         for ($i = 0; $i < $limit; $i++) {
             DB::table('user_course')->insert([
-                'user_id' => rand(1, 50),
-                'course_id' => rand(1, 50),
+                'user_id' => 69,
+                'course_id' => rand(63, 69),
                 'progress' => rand(1, 100),
                 'created_at' => $faker->dateTime($max = 'now', $timezone = null),
                 'updated_at' => $faker->dateTime($max = 'now', $timezone = null),
