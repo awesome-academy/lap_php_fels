@@ -16,8 +16,11 @@ class AdminLessionController extends Controller
 {
     protected $categoryRepository;
 
-    public function __construct(CourseRepositoryInterface $courseRepository, LessionRepositoryInterface $lessionRepository, TestRepositoryInterface $testRepository)
-    {
+    public function __construct(
+        CourseRepositoryInterface $courseRepository,
+        LessionRepositoryInterface $lessionRepository,
+        TestRepositoryInterface $testRepository
+    ) {
         $this->middleware('auth');
         $this->courseRepository = $courseRepository;
         $this->lessionRepository = $lessionRepository;

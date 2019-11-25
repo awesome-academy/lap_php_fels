@@ -7,5 +7,7 @@ interface TestRepositoryInterface
 
     public function getOrderBy();
 
-    public function getWhere($id);
+    public function sync($id, array $data);
+
+    public function detach($id);
 }
