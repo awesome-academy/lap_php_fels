@@ -10,4 +10,8 @@ interface TestRepositoryInterface
     public function sync($id, array $data);
 
     public function detach($id);
+
+    public function testQuestion($id);
+
+    public function randomQuestion($id);
 }
