@@ -37,6 +37,16 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Question\QuestionRepositoryInterface::class,
             \App\Repositories\Question\QuestionEloquentRepository::class
         );
+
+        $this->app->singleton(
+            \App\Repositories\Answer\AnswerRepositoryInterface::class,
+            \App\Repositories\Answer\AnswerEloquentRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\User\UserRepositoryInterface::class,
+            \App\Repositories\User\UserEloquentRepository::class
+        );
     }
 
     /**
