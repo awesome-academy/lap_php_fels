@@ -47,6 +47,16 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\User\UserRepositoryInterface::class,
             \App\Repositories\User\UserEloquentRepository::class
         );
+
+        $this->app->singleton(
+            \App\Repositories\Activity\ActivityRepositoryInterface::class,
+            \App\Repositories\Activity\ActivityEloquentRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\Word\WordRepositoryInterface::class,
+            \App\Repositories\Word\WordEloquentRepository::class
+        );
     }
 
     /**

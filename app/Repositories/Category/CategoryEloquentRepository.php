@@ -16,7 +16,6 @@ class CategoryEloquentRepository extends EloquentRepository implements CategoryR
     {
         return $this->_model::where('parent_id', config('number.zero'))->get();
     }
-
     public function getOrderBy()
     {
         return $this->_model::orderBy('id', 'DESC')->paginate(config('number.ten'));

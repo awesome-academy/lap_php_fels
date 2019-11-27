@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Lession;
-use App\Models\Course;
+use App\Repositories\Course\CourseRepositoryInterface;
 use App\Http\Controllers\Controller;
 
 class CourseController extends Controller
-{    
-    public function __construct()
+{
+    public function __construct(CourseRepositoryInterface $courseRepository)
     {
         $this->middleware('auth');
+        $this->courseRepository = $courseRepository;
     }
-    
+
     public function index($id)
     {
-        $courses = Course::where('cate_id', $id)->get();
+        $courses = $this->courseRepository->getWhereById($id);
 
         return view('pages.courses', ['courses' => $courses]);
     }

@@ -19,19 +19,29 @@ class TestEloquentRepository extends EloquentRepository implements TestRepositor
 
     public function sync($test, array $data)
     {
-        return $test->questions->sync($data);
+        return $test->questions()->sync($data);
     }
 
     public function detach($id)
     {
         $test = $this->find($id);
-        if ($test) {
+        if ($test->questions) {
             $test->questions->detach();
 
             return true;
         }
 
         return false;
+    }
+
+    public function testQuestion($id)
+    {
+        return $this->_model::with('questions')->where('id', $id)->first();
+    }
+
+    public function randomQuestion($id)
+    {
+        return $this->testQuestion($id)->questions->random(config('number.five'));
     }
 
 }
