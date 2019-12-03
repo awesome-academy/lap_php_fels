@@ -56,28 +56,64 @@
                         <div class="collapse navbar-collapse" id="navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
-                                    <a href="{{ route('home') }}" >{{ trans('layout.home') }}</a>
+                                    <a href="{{ route('home') }}" >Home</a>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        {{ cate_parent($categories) }}
+                                        <?php cate_parent($categories) ?>
                                     </ul>
                                 </li>
-                                <li class=""><a href="contact-us.html">{{ trans('layout.contact') }}</a></li>
+                                <li class=""><a href="contact-us.html">Contact Us</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
                                     <ul class="dropdown-menu">
-                                        <form class="form-inline">
-                                            <button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button><input type="text" class="form-control pull-left" placeholder="{{ trans('layout.search') }}">
+                                        <form class="form-inline" method="get" action="{{ route('search') }}">
+                                            <button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button><input type="text" class="form-control pull-left" name="search" placeholder="Search">
                                         </form>
                                     </ul>
+                                </li>
+                                <li class="dropdown" >
+                                    <div style=" padding: 16px">
+                                        <a href="#" onclick="return false;" role="button" data-toggle="dropdown" id="dropdownMenu1" data-target="#" aria-expanded="true">
+                                            <i class="far fa-bell" style="font-size: 20px; color: black">
+                                            </i>
+                                        <span class="badge badge-danger count-notification" data-count="{{ count(Auth::user()->unreadNotifications) }}">{{ count(Auth::user()->unreadNotifications) }}</span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-left pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                                            <li role="presentation">
+                                                <a class="dropdown-menu-header text-center channel" data-channel="{{ Auth::user()->id }}">Notifications</a>
+                                            </li>
+                                            <div style="margin:10px; width:430px; padding-left: 0px" class="notifications">
+                                                @foreach (Auth::user()->notifications as $key => $notification)
+                                                    <div>
+                                                        <div class="col-sm-10">
+                                                            <a href="{{ route('get.all.lession', [$notification->data['course_id'], $notification->data['course_slug']]) }}"> {{ $notification->data['title'] }} <b>{{ $notification->data['content'] }}</b></a>
+                                                            <i class="timeline-date">{{ $notification->created_at->diffForHumans() }} </i>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            @if (! $notification->read_at)
+                                                                <a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" title="Mark as read!" class="read" data-id="{{ $notification->id }}" data-type="0"><i class="fas fa-circle"></i></a>
+                                                            @else
+                                                                <a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" title="Mark as unread!" class="read" data-id="{{ $notification->id }}" data-type="1"> <i class="far fa-circle"></i></a>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <li role="presentation">
+                                                <a href="#" class="text-center dropdown-menu-header">View all</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ route('get.profile', Auth::user()->id) }}"><i class="far fa-user-circle"></i>  {{ trans('layout.profile') }}</a></li>
-                                        <li><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i>  {{ trans('layout.logout') }}</a></li></li>
+                                        <li><a href="{{ route('get.profile',Auth::user()->id) }}"><i class="far fa-user-circle"></i>  Profile</a></li>
+                                        <li>
+                                            <a href="{{ route('get.logout') }}"><i class="fas fa-sign-out-alt"></i>  Logout</a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>

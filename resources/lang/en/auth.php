@@ -29,7 +29,7 @@ return [
     'name' => 'Your Name',
     'create_account' => 'Create an account',
     'or_login_with' => 'Or login with',
-    'repeat_password' => 'Repeat your password'
+    'repeat_password' => 'Repeat your password',
     'register' => 'Register',
     'already_member' => 'I am already member',
     //verify

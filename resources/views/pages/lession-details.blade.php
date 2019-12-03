@@ -20,31 +20,54 @@
                         <div class="tab-content">
                             <div id="vocal" class="tab-pane fade in active">
                                 @foreach ($lession->words as $word)
-                                    <h3 class="mt0 mb20">{{ $word->key_word }}</h3>
+                                    @if ($user_word)
+                                        <?php $i = 0?>
+                                    @endif
+                                        @foreach ($user_word->words as $uword)
+                                            @if ($word->id == $uword->id)
+                                                <?php $i=1; break; ?>
+                                            @endif
+                                        @endforeach
+                                    @if ($i == 0)
+                                        <h3 class="mt0 mb20"><a href="javascript:void(0)" class="memorised" data-id="{{ $word->id }}" data-type="0"><i class="far fa-bookmark memory-mark"></i></a>  {{ $word->key_word }}</h3>
+                                    @else
+                                        <h3 class="mt0 mb20"><a href="javascript:void(0)" class="memorised" data-id="{{ $word->id }}" data-type="1"><i class="fas fa-bookmark memory-mark"></i></a>  {{ $word->key_word }}</h3>
+                                    @endif
                                     <p class="mb20"><small>{{ $word->sentence }}</small></p>
                                 @endforeach
                             </div>
                             <div id="quiz" class="tab-pane fade">
-                                @php $i = 1 @endphp
+                                <?php $i = 1 ?>
                                 <form action="{{ route('answer.question', [$lession->id, $lession->test->id]) }}" method="POST">
                                     @csrf
-                                    @foreach ($lession->test->questions as $question)
+                                    @foreach($questions as $key => $question)
                                     <div class="form-group mt0 mb20">
                                         <div >
-                                            <label for="{{ $question->id }}">{{ $i . '. ' . $question->text }}</label>
+                                            <label for="{{ $question->id }}">{{ $i.'. '.$question->text }}</label>
                                         </div>
                                         <div>
-                                            @foreach ($question->answers as $answer)
-                                            <input type="radio" name="{{ $question->id }}" value="{{ $answer->id }}" required="required"> {{ $answer->text }}<br>
+                                            @foreach($question->answers as $k => $answer)
+                                            <input type="radio" id="{{ $key }}" class="{{ $key }}" data-id="{{ $key }}" data-value="{{ $question->id }}" name="questions[{{ $question->id }}]" value="{{ $answer->id }}"> {{ $answer->text }}<br>
                                             @endforeach
                                         </div>
                                     </div>
                                     <hr class="mb20">
                                     <?php $i++ ?>
                                     @endforeach
-                                    <input type="submit" class="btn btn-success" name="">
+                                    <input type="submit" class="btn btn-success" id="submit">
                                 </form>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div style="position: fixed; width: 200px">
+                        <div>
+                            <span id="ten-countdown"></span>
+                            <span class="pull-right"><span id="progress" data-value="0">{{ config('number.zero') }}</span> %</span>
+                        </div>
+                        <div class="progress" style="height: 40px">
+                            <div class="progress-bar"></div>
                         </div>
                     </div>
                 </div>
